@@ -43,6 +43,7 @@ app.get('/about', (req,res) =>{
 
 app.get('/addphoto', (req,res) =>{
 
+
     res.render('addphoto')
    
    })
@@ -52,6 +53,43 @@ app.get('/addphoto', (req,res) =>{
     res.render('video-page')
    
    })
+
+
+  app.get('/photos/:photoid', async(req,res)=>{
+
+    let pageId= req.params.photoid
+    let postData = await Post.findById(pageId).then(item => item._doc).then(item=> res.render('new_photo' ,{"photoData" : [{...item}]}))
+    
+
+  })
+
+
+app.get('/update/:photoid', async(req,res) => {
+  let pageId= req.params.photoid
+  let updateData = await Post.findById(pageId).then(item => item._doc).then(item=> res.render('update_photo',{"photoData" : [{...item}]}))
+
+
+})
+
+app.post('/update_one_photo/:photoid', async(req,res)=>{
+  let pageId= req.params.photoid
+  let photoData= req.body
+  
+  Post.findByIdAndUpdate( pageId, {...photoData} ).then(()=>res.redirect('/'))
+
+}
+
+)
+
+app.get('/delete/:photoid',async(req,res) => {
+
+  let pageId= req.params.photoid
+
+  Post.findByIdAndDelete(pageId).then(()=>res.redirect('/'))
+
+} 
+)
+
 
    app.post('/addnewblog', (req,res) =>{
 

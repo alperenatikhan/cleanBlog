@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Catalog</title>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- https://fonts.google.com/ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo-video-catalog.css">
+<!--
+
+TemplateMo 552 Video Catalog
+
+https://templatemo.com/tm-552-video-catalog
+
+-->
+</head>
+
+
+
+ <div class="row tm-catalog-item-list">
+                        <% photoData.forEach(function(post){ %>
+
+                            
+                        <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
+                            <div class="position-relative tm-thumbnail-container">
+                                <img src="img/tn-01.jpg" alt="Image" class="img-fluid tm-catalog-item-img">    
+                                <a href="video-page" class="position-absolute tm-img-overlay">
+                                    <i class="fas fa-play tm-overlay-icon"></i>
+                                </a>
+                            </div> 
+                            
+                           
+                                
+                             
+                            
+                            <div class="p-4 tm-bg-gray tm-catalog-item-description">
+                                
+                                <h3 class="tm-text-primary mb-3 tm-catalog-item-title"> <%=post.title %> </h3>
+                                <p class="tm-catalog-item-text"> <%=post.detail %></p>
+                                <p class="tm-catalog-item-text"> <%=post._id %></p>
+                                <p class="tm-catalog-item-text"> <%=post.dateCreated %></p>
+                                
+
+                            </div>
+
+                           
+                        </div>
+                        <% }); %>
+                  
+                    </div>
