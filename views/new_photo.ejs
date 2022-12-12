@@ -82,7 +82,7 @@ https://templatemo.com/tm-552-video-catalog
 				<main>
 					<div class="row mb-5 pb-4">
 						<div class="col-12">
-							<img src="/img/tn-01.jpg" alt="Image" class="img-fluid tm-catalog-item-img">
+							<img src="<%=photoData[0].fileUrl%>" alt="Image" class="img-fluid tm-catalog-item-img">
 						</div>
 					</div>
 					<div class="row mb-5 pb-5">
@@ -97,7 +97,8 @@ https://templatemo.com/tm-552-video-catalog
 <p class="mb-4"> <%= post.detail%> </p>
 <p class="mb-4"> <%= post.dateCreated%> </p>
 
-<p class="mb-4"> <%= post._id%> </p>	
+<p class="mb-4"> <%= post._id%> </p>
+<a href="<%= post?.fileUrl%>"><p class="mb-4"> <%= post?.fileUrl%> </p></a>		
                         
 
 
