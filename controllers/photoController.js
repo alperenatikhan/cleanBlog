@@ -109,7 +109,7 @@ async function uploadPhotoFile(){
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
  sampleFile = req.file;
-  uploadPath = path.join( __dirname , '..',  `uploads`, `${sampleFile.filename}`) ;
+  uploadPath = path.join( __dirname , '..',  `/tmp`, `${sampleFile.filename}`) ;
   let fileName = sampleFile.originalname
 
   console.log("filename",fileName)
