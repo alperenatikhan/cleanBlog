@@ -1,10 +1,12 @@
 const express= require('express');
-const fileUpload = require('express-fileupload');
+
 const app = express();
 const ejs= require('ejs');
 
 const Post = require('./models/Post');
 const mongoose = require('mongoose')
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 
 const path=require('path');
@@ -24,12 +26,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
-app.use(fileUpload({
 
-useTempFiles: true
-
-
-}))
 
 
 
@@ -64,6 +61,6 @@ app.post('/update_one_photo/:photoid',photoController.postUpdate)
 
 app.get('/delete/:photoid', photoController.deletePhoto) 
 
-app.post('/addnewblog',photoController.postPhoto)
+app.post('/addnewblog',upload.single("photo"),photoController.postPhoto)
 
 app.listen(port, ()=> console.log(`it started ${port}`))

@@ -1,6 +1,9 @@
 const Post = require('../models/Post');
 const cloudinary = require('cloudinary').v2;
-const fileUpload = require('express-fileupload');
+const path=require('path');
+
+
+
 require('dotenv').config();
 
 
@@ -85,6 +88,8 @@ let cloudinaryDelete = await cloudinary.uploader.destroy(`images/${foundFileName
 
 exports.postPhoto =async(req,res) =>{
 
+  console.log("file is there",req.file)
+
     let sampleFile;
     let uploadPath; 
     let fileUrl;
@@ -98,17 +103,19 @@ async function uploadPhotoFile(){
 
   
 
-  if (!req.files || Object.keys(req.files).length === 0) {
+  if (!req.file || Object.keys(req.file).length === 0) {
     return res.status(400).send('No files were uploaded.');
   }
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
- sampleFile = req.files.photo;
-  uploadPath = __dirname + '/public/photos/' + sampleFile.name;
-  let fileName = sampleFile.name
+ sampleFile = req.file;
+  uploadPath = path.join( __dirname , '..',  `uploads`, `${sampleFile.filename}`) ;
+  let fileName = sampleFile.originalname
+
+  console.log("filename",fileName)
 
 //Cloudinary functions
-const res = await cloudinary.uploader.upload( sampleFile.tempFilePath , {public_id: fileName, resourceType:"auto", folder:'images'}).then((data) => {
+const res = await cloudinary.uploader.upload( uploadPath , {public_id: fileName, resourceType:"auto", folder:'images'}).then((data) => {
   console.log(data);
   fileUrl =data.secure_url;
 }).catch((err) => {
