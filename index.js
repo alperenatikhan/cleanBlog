@@ -5,14 +5,12 @@ const ejs= require('ejs');
 
 const Post = require('./models/Post');
 const mongoose = require('mongoose')
-var admin = require("firebase-admin");
-const multer=require('multer')
-const upload=multer({storage: multer.memoryStorage()})
-const saltedMd5=require('salted-md5')
+
+
 const path=require('path');
 const photoController = require('./controllers/photoController')
 const cloudinary = require('cloudinary').v2;
-const fs = require('fs');
+
 
 
 cloudinary.config({
