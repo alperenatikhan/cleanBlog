@@ -1,6 +1,9 @@
 const Post = require('../models/Post');
 const cloudinary = require('cloudinary').v2;
+const os = require('node:os')
 const path=require('path');
+
+const tempDir = os.tmpdir()
 
 
 
@@ -109,7 +112,7 @@ async function uploadPhotoFile(){
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
  sampleFile = req.file;
-  uploadPath = path.join( __dirname , '..',  `/tmp`, `${sampleFile.filename}`) ;
+  uploadPath = path.join( tempDir, `${sampleFile.filename}`) ;
   let fileName = sampleFile.originalname
 
   console.log("filename",fileName)

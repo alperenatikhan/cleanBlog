@@ -5,8 +5,9 @@ const ejs= require('ejs');
 
 const Post = require('./models/Post');
 const mongoose = require('mongoose')
+const os = require('node:os')
 const multer  = require('multer')
-const upload = multer({ dest: 'tmp/' })
+const upload = multer({ dest: `${os.tmpdir()}` })
 
 
 const path=require('path');
